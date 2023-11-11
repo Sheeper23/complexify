@@ -1,7 +1,15 @@
+import Canvas from "@/components/Canvas";
+import Sidebar from "@/components/Sidebar";
+import Text from "@/components/Text";
+
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between">
-      
+    <main className="flex w-full h-full">
+      <Sidebar />
+      <div className="grow flex flex-col p-8 gap-8">
+        <Canvas />
+        <Text />
+      </div>
     </main>
   )
 }

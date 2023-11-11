@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Mono } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
+const spaceMono = Space_Mono({ weight: "700" , subsets: ['latin'], variable: "--title-font" })
 
 export const metadata: Metadata = {
   title: 'Complexify',
@@ -16,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-neutral-800`}>
+      <body className={`${inter.className} ${spaceMono.variable} h-screen bg-neutral-800 text-white`}>
         {children}
       </body>
     </html>
