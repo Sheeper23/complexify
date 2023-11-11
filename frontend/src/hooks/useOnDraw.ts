@@ -12,8 +12,9 @@ export function useOnDraw(onDraw: any) {
     function setCanvasRef(ref: any) {
         canvasRef.current = ref;
         let rect = ref?.parentNode.getBoundingClientRect();
-        ref.width = rect.width;
-        ref.height = rect.height;
+        if (!ref) return;
+        ref.width = rect?.width;
+        ref.height = rect?.height;
     }
 
     function onCanvasMouseDown() {
