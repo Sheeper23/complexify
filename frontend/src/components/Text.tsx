@@ -1,3 +1,5 @@
+"use client"
+
 export default function Text() {
   return (
     <div className="h-12 w-full flex rounded-full bg-neutral-700 items-center px-4">
