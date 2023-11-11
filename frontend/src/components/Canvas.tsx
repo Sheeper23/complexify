@@ -2,6 +2,7 @@
 
 import { useOnDraw } from "@/hooks/useOnDraw";
 import { useRef } from "react";
+import axios from 'axios';
 
 export default function Canvas() {
     const strokeColor = useRef('#000000')
@@ -39,10 +40,16 @@ export default function Canvas() {
 
     }
 
-    function onSubmit() {
-        let canvas = canvasRef.current
-        const base64Canvas = canvas.toDataURL().split(';base64,')[1];
-        console.log(JSON.parse(`{"image_path": "${base64Canvas}"}`))
+    async function onSubmit() {
+      let canvas = canvasRef.current
+      const base64Canvas = canvas.toDataURL().split(';base64,')[1];
+      console.log(JSON.parse(`{"image_path": "${base64Canvas}"}`))
+      try {
+        const response = await axios.post('/process-image', base64Canvas);
+        console.log(response.data); // handle the response as needed
+      } catch (error) {
+        console.error('Error making POST request:', error);
+      }
     }
     
     return (

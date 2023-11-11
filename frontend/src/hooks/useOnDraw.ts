@@ -11,7 +11,7 @@ export function useOnDraw(onDraw: any) {
 
     function setCanvasRef(ref: any) {
         canvasRef.current = ref;
-        let rect = ref.parentNode.getBoundingClientRect();
+        let rect = ref?.parentNode.getBoundingClientRect();
         ref.width = rect.width;
         ref.height = rect.height;
     }
@@ -40,7 +40,6 @@ export function useOnDraw(onDraw: any) {
                     const ctx = canvasRef.current.getContext('2d');
                     if (onDraw) onDraw(ctx, point, prevPointRef.current);
                     prevPointRef.current = point;
-                    console.log(point);
                 }
             }
             mouseMoveListenerRef.current = mouseMoveListener;
