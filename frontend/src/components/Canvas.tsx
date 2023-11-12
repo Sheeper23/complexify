@@ -1,7 +1,7 @@
 "use client";
 
 import { useOnDraw } from "@/hooks/useOnDraw";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
 const config: AxiosRequestConfig<any> = {
@@ -16,6 +16,20 @@ export default function Canvas() {
   const strokeWidth = useRef(10);
 
   const { setCanvasRef, onCanvasMouseDown, canvasRef } = useOnDraw(onDraw);
+
+  useEffect(() => {
+    
+    let ctx = canvasRef.current.getContext('2d')
+
+
+    let rect = canvasRef.current?.parentNode.getBoundingClientRect();
+    if (!canvasRef.current) return;
+    canvasRef.current.width = rect?.width;
+    canvasRef.current.height = rect?.height;
+
+    ctx.fillStyle = 'white'
+    ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+  }, [canvasRef])
 
   function onDraw(ctx: any, point: any, prevPoint: any) {
     drawLine(prevPoint, point, ctx, strokeColor.current, strokeWidth.current);
@@ -39,6 +53,7 @@ export default function Canvas() {
   async function onSubmit() {
     let canvas = canvasRef.current;
     const base64Canvas = canvas.toDataURL().split(";base64,")[1];
+
     console.log(JSON.parse(`{"image_path": "${base64Canvas}"}`));
     try {
       const response = await axios.post(

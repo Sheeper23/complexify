@@ -28,10 +28,10 @@ def process_image():
 
         # Decode the base64 image
         image_data = base64.b64decode(base64_image)
-        print(image_data)
+
         temp_image_path = "temp_image.png"  # Path where the image will be saved
         with Image.open(BytesIO(image_data)) as img:
-            print(img)
+
             # Save the image temporarily
             img.save(temp_image_path)
 
