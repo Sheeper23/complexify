@@ -3,6 +3,7 @@
 import Image from "next/image";
 import mascot from "../../public/hedgeMascot.png"
 import Text from "@/components/Text"
+import { useState } from "react";
 
 type SidebarProps = {
   text: string
@@ -19,12 +20,17 @@ export default function Sidebar({
   onYes,
   onNo
 }: SidebarProps) {
+  const [wiggle, setWiggle] = useState(false)
+  
   function onClickYes() {
     onYes(gptMessage.slice(12))
   }
 
   function onClickNo() {
-    if (text == "") return;
+    if (text == "")  {
+      setWiggle(true)
+      return;
+    }
     onNo()
   }
 
@@ -55,7 +61,7 @@ export default function Sidebar({
               No
             </div>
           </div>
-          {(gptMessage != "Left click on the canvas to my right to draw!" && gptMessage != "" && gptMessage != "Processing your image..." && gptMessage != "Generating your complexified image..." && gptMessage != "Enjoy your image!") && <Text text={text} setText={setText} />}
+          {(gptMessage != "Left click on the canvas to my right to draw!" && gptMessage != "" && gptMessage != "Processing your image..." && gptMessage != "Generating your complexified image..." && gptMessage != "Enjoy your image!") && <Text wiggle={wiggle} setWiggle={setWiggle} text={text} setText={setText} />}
         </>}
     </div>
   )
