@@ -3,9 +3,11 @@
 import { useOnDraw } from "@/hooks/useOnDraw";
 import { useEffect, useRef } from "react";
 import axios, { AxiosRequestConfig } from "axios";
+import Image from "next/image";
 
 type CanvasProps = {
-  setMessage: (message: string) => void
+  setMessage: (message: string) => void,
+  image_url: string
 }
 
 const config: AxiosRequestConfig<any> = {
@@ -16,7 +18,8 @@ const config: AxiosRequestConfig<any> = {
 };
 
 export default function Canvas({
-  setMessage
+  setMessage,
+  image_url
 }: CanvasProps) {
   const strokeColor = useRef("#000000");
   const strokeWidth = useRef(10);
@@ -75,13 +78,25 @@ export default function Canvas({
   return (
     <>
       <div className="grow bg-white rounded-md">
-        <canvas onMouseDown={onCanvasMouseDown} ref={setCanvasRef} />
+        {image_url == "" ?
+        <canvas onMouseDown={onCanvasMouseDown} ref={setCanvasRef} /> :
+        <div className="relative w-full h-full flex justify-center">
+        <Image
+        width={0}
+        height={0}
+        sizes="100vw"
+        className="h-full w-auto"
+        src={image_url}
+        alt="image-placeholder"
+        />
+    </div>
+        }
       </div>
       <div className="h-12 w-full flex bg-neutral-500 items-center justify-between px-4">
-        <div>option</div>
-        <div>option</div>
-        <div>option</div>
-        <div>option</div>
+        <div onClick={() => strokeColor.current = "#FF0000"}>option</div>
+        <div onClick={() => strokeColor.current = "#00FF00"}>option</div>
+        <div onClick={() => strokeColor.current = "#0000FF"}>option</div>
+        <div onClick={() => strokeColor.current = "#000000"}>option</div>
         <div className="" onClick={onSubmit}>
           Done!
         </div>

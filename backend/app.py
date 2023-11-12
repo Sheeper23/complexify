@@ -51,19 +51,8 @@ def process_image():
 @app.route('/process-description', methods=['POST'])
 def process_description():
     try:
-        data = request.json
-        user_response = data['response']  # YES or NO
-        description = data['description']
+        description = request.json
 
-        # You may process the description differently based on the response
-        if user_response == "YES":
-            # Process the description
-            pass
-        elif user_response == "NO":
-            # Maybe alter the description or request further input
-            pass
-
-        # Generate the image (modify this function as per your setup)
         image_url = generate_image(description)
 
         return jsonify({"imageUrl": image_url}), 200
@@ -105,9 +94,11 @@ def generate_response(prompt):
 def generate_image(prompt):
     try:
         response = openai.Image.create(
-            prompt=prompt,
+            prompt=prompt + " and make it complex",
             n=1,  # Number of images to generate
-            size="1318x661"  # Image size
+            size="1024x1024",  # Image size
+            model="dall-e-3",
+            quality="standard"
         )
         return response['data'][0]['url']  # Returns the URL of the generated image
     except Exception as e:
