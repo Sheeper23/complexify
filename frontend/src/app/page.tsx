@@ -16,6 +16,7 @@ const config: AxiosRequestConfig<any> = {
 export default function Home() {
   const [gptMessage, setGptMessage] = useState("")
   const [image_url, setImage_url] = useState("")
+  const [text, setText] = useState("")
 
   function setMessage(message: string) {
     setGptMessage(message)
@@ -36,8 +37,19 @@ export default function Home() {
     }
   }
 
-  async function onNo(newDescription: string) {
-
+  async function onNo() {
+    setGptMessage("Generating image...")
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/process-description",
+        text,
+        config
+      );
+      setImage_url(response.data["imageUrl"])
+      setGptMessage("Enjoy your image!")
+    } catch (error) {
+      console.error("ERROR " + error)
+    }
   }
 
   return (
@@ -45,7 +57,7 @@ export default function Home() {
       <Sidebar gptMessage={gptMessage} onYes={onYes} onNo={onNo} />
       <div className="grow flex flex-col p-8 gap-8">
         <Canvas image_url={image_url} setMessage={setMessage} />
-        <Text />
+        <Text text={text} setText={setText} />
       </div>
     </main>
   )

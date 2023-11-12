@@ -93,10 +93,11 @@ export default function Canvas({
         }
       </div>
       <div className="h-12 w-full flex bg-neutral-500 items-center justify-between px-4">
-        <div onClick={() => strokeColor.current = "#FF0000"}>option</div>
-        <div onClick={() => strokeColor.current = "#00FF00"}>option</div>
-        <div onClick={() => strokeColor.current = "#0000FF"}>option</div>
-        <div onClick={() => strokeColor.current = "#000000"}>option</div>
+        <div onClick={() => strokeColor.current = "#FF0000"}>red</div>
+        <div onClick={() => strokeColor.current = "#00FF00"}>green</div>
+        <div onClick={() => strokeColor.current = "#0000FF"}>blue</div>
+        <div onClick={() => strokeColor.current = "#000000"}>black</div>
+        <div onClick={() => {strokeColor.current = "#FFFFFF"}}>eraser</div>
         <div className="" onClick={onSubmit}>
           Done!
         </div>
