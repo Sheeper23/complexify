@@ -38,11 +38,11 @@ def process_image():
         # Run complexify.py's main method with the image path
         complexify.main(temp_image_path)
 
-        main()
+        response = main()
         
         # app.main(temp_image_path)  # Uncomment and use if needed
 
-        return jsonify({"message": "Image processed successfully"}), 200
+        return jsonify({"message": response}), 200
 
     except Exception as e:
         print(e)
@@ -98,8 +98,9 @@ def main():
     descriptions = read_description_from_csv(csv_file_path)
     for desc in descriptions:
         chat_response = generate_response("Ask the user if the image is " + desc)
-        image_url = generate_image(desc)
-        print(f"Prompt: {desc}\nChatGPT Response: {chat_response}\nGenerated Image URL: {image_url}\n")
+        return chat_response
+        # image_url = generate_image(desc)
+        # print(f"Prompt: {desc}\nChatGPT Response: {chat_response}\nGenerated Image URL: {image_url}\n")
 
 if __name__ == "__main__":
     main()
