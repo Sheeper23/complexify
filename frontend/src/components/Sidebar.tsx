@@ -24,6 +24,7 @@ export default function Sidebar({
   }
 
   function onClickNo() {
+    if (text == "") return;
     onNo()
   }
 
