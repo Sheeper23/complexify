@@ -47,6 +47,8 @@ export default function Canvas({
   }
 
   function drawLine(start: any, end: any, ctx: any, color: any, width: any) {
+    if (gptMessage != "Left click on the canvas to my right to draw!") return;
+    
     start = start ?? end;
     ctx.beginPath();
     ctx.lineWidth = width;
@@ -102,9 +104,7 @@ export default function Canvas({
         <div className={`bg-blue-600 rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#0000FF" && "border-2 border-white"}`} onClick={() => setStrokeColor("#0000FF")}>Blue</div>
         <div className={`bg-black text-white rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#000000" && "border-2 border-white"}`} onClick={() => setStrokeColor("#000000")}>Black</div>
         <div className={`bg-white text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FFFFFF" && "border-2 border-black"}`} onClick={() => {setStrokeColor("#FFFFFF")}}>Eraser</div>
-        <div className={`bg-white text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer`} onClick={onSubmit}>
-          Done!
-        </div>
+        {gptMessage == "Left click on the canvas to my right to draw!" && <div className={`bg-white text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer`} onClick={onSubmit}>Done!</div>}
       </div>
     </>
   );
