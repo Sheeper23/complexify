@@ -14,7 +14,7 @@ const config: AxiosRequestConfig<any> = {
 };
 
 export default function Home() {
-  const [gptMessage, setGptMessage] = useState("")
+  const [gptMessage, setGptMessage] = useState("Left click on the canvas to my right to draw!")
   const [image_url, setImage_url] = useState("")
   const [text, setText] = useState("")
 

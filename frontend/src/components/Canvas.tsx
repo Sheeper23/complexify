@@ -64,6 +64,7 @@ export default function Canvas({
   async function onSubmit() {
     let canvas = canvasRef.current;
     const base64Canvas = canvas.toDataURL().split(";base64,")[1];
+    
     setMessage("Processing your image...")
     try {
       const response = await axios.post(
@@ -79,7 +80,7 @@ export default function Canvas({
 
   return (
     <>
-      <div className="grow bg-white rounded-md">
+      <div className={`grow bg-white ${gptMessage.slice(gptMessage.length-3) == "..." && "animate-pulse"}`}>
         {image_url == "" ?
         <canvas onMouseDown={onCanvasMouseDown} ref={setCanvasRef} /> :
         <div className="relative w-full h-full flex justify-center">
