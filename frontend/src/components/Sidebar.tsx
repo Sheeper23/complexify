@@ -29,7 +29,7 @@ export default function Sidebar({
   }
 
   return (
-    <div className="flex flex-col h-full gap-4 bg-neutral-700 w-[30%] items-center p-4">
+    <div className="flex flex-col h-full gap-4 bg-neutral-700 w-[25%] items-center p-4">
         <Image src={mascot} alt="hedgehog" className="aspect-square w-full rounded-md" />
         <p className="text-[2.5vw] italic font-title text-transparent bg-clip-text scrolling-gradient-a tracking-wider">&nbsp;Complexify&nbsp;</p>
         <div className="w-full bg-black border-2 border-white grow p-2 text-blue-400 rounded-md overflow-y-auto">
