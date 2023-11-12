@@ -23,7 +23,7 @@ export default function Home() {
   }
 
   async function onYes(description: string) {
-    setGptMessage("Generating image...")
+    setGptMessage("Generating your complexified image...")
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/process-description",
@@ -38,7 +38,7 @@ export default function Home() {
   }
 
   async function onNo() {
-    setGptMessage("Generating image...")
+    setGptMessage("Generating your complexified image...")
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/process-description",
@@ -54,10 +54,9 @@ export default function Home() {
 
   return (
     <main className="flex w-full h-full">
-      <Sidebar gptMessage={gptMessage} onYes={onYes} onNo={onNo} />
+      <Sidebar text={text} setText={setText} gptMessage={gptMessage} onYes={onYes} onNo={onNo} />
       <div className="grow flex flex-col p-8 gap-8">
-        <Canvas image_url={image_url} setMessage={setMessage} />
-        <Text text={text} setText={setText} />
+        <Canvas gptMessage={gptMessage} image_url={image_url} setMessage={setMessage} />
       </div>
     </main>
   )
