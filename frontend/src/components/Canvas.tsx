@@ -83,7 +83,7 @@ export default function Canvas({
 
   return (
     <>
-      <div className={`grow bg-white ${gptMessage.slice(gptMessage.length-3) == "..." && "animate-pulse"}`}>
+      <div className={`grow ${image_url == "" ? "bg-white" : "bg-transparent"} ${gptMessage.slice(gptMessage.length-3) == "..." && "animate-pulse"}`}>
         {image_url == "" ?
         <canvas onMouseDown={onCanvasMouseDown} ref={setCanvasRef} /> :
         <div className="relative w-full h-full flex justify-center">
