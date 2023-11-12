@@ -6,17 +6,17 @@ Complexify provides a drawing pad which allows the user to draw any image they w
 
 
 # Running locally
-Install required pip packages and node modules
-Ensure axios post requests in `Canvas.tsx` and `page.tsx` point to `http://127.0.0.1:5000/` as the main domain
-Create a `config.py` in the `backend` directory with contents
+Install required pip packages and node modules\
+Ensure axios post requests in `Canvas.tsx` and `page.tsx` point to `http://127.0.0.1:5000/` as the main domain\
+Create a `config.py` in the `backend` directory with contents\
 ```python
 OPENAI_API_KEY = "<your API key>"
 ```
-Run the following from the `backend` directory
+Run the following from the `backend` directory\
 ```bash
 flask run
 ```
-Run the following from the `frontend` directory
+Run the following from the `frontend` directory\
 ```bash
 npm run dev
 ```
