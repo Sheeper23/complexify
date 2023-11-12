@@ -23,3 +23,16 @@
         rgb(250, 204, 21)
     );
   }
+
+  .scrolling-gradient-b {
+    animation: scroll-gradient 5s linear infinite;
+    background-size: 200%;
+    background-image: linear-gradient(
+        to right,
+        rgb(193, 111, 247),
+        rgb(179, 241, 255),
+        rgb(74, 222, 128),
+        rgb(179, 241, 255),
+        rgb(193, 111, 247)
+    );
+}

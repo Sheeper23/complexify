@@ -93,12 +93,12 @@ export default function Canvas({
         }
       </div>
       <div className="h-12 w-full flex bg-neutral-500 items-center justify-between px-4">
-        <div onClick={() => strokeColor.current = "#FF0000"}>red</div>
-        <div onClick={() => strokeColor.current = "#00FF00"}>green</div>
-        <div onClick={() => strokeColor.current = "#0000FF"}>blue</div>
-        <div onClick={() => strokeColor.current = "#000000"}>black</div>
-        <div onClick={() => {strokeColor.current = "#FFFFFF"}}>eraser</div>
-        <div className="" onClick={onSubmit}>
+        <div className="bg-red-600 rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={() => strokeColor.current = "#FF0000"}>Red</div>
+        <div className="bg-green-600 rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={() => strokeColor.current = "#00FF00"}>Green</div>
+        <div className="bg-blue-600 rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={() => strokeColor.current = "#0000FF"}>Blue</div>
+        <div className="bg-black text-white rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={() => strokeColor.current = "#000000"}>Black</div>
+        <div className="bg-white text-black rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={() => {strokeColor.current = "#FFFFFF"}}>Eraser</div>
+        <div className="bg-white text-black rounded-full py-2 px-4 hover:scale-95 cursor-pointer" onClick={onSubmit}>
           Done!
         </div>
       </div>
