@@ -2,6 +2,7 @@ import csv
 import openai
 import requests
 import os
+from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify, send_from_directory
 from config import OPENAI_API_KEY
 from werkzeug.utils import secure_filename
@@ -10,6 +11,8 @@ from io import BytesIO
 from PIL import Image
 import complexify;
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Function to read descriptions from CSV
 openai.api_key = OPENAI_API_KEY
@@ -17,29 +20,32 @@ openai.api_key = OPENAI_API_KEY
 
 
 @app.route('/process-image', methods=['POST'])
+@cross_origin()
 def process_image():
     try:
         # Decode the JSON payload
-        content = request.json
-        base64_image = content['image']
+        base64_image = request.json
 
         # Decode the base64 image
         image_data = base64.b64decode(base64_image)
+        print(image_data)
         temp_image_path = "temp_image.png"  # Path where the image will be saved
         with Image.open(BytesIO(image_data)) as img:
+            print(img)
             # Save the image temporarily
             img.save(temp_image_path)
 
         # Run complexify.py's main method with the image path
         complexify.main(temp_image_path)
 
-        app.main()
+        main()
         
         # app.main(temp_image_path)  # Uncomment and use if needed
 
         return jsonify({"message": "Image processed successfully"}), 200
 
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 500
 
 
@@ -47,6 +53,7 @@ def process_image():
 def process_file():
     # Implement logic to trigger processing
     # Example: main()
+    return jsonify({"hello": "world"}), 200
     pass
 
 @app.route('/results', methods=['GET'])

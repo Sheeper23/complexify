@@ -39,32 +39,21 @@ def get_image_caption(image_path):
     return caption
 
 # Main function
-def main():
-    # Define the directory containing the extracted files
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    extract_dir = os.path.join(current_dir, 'images')
-
-    # List the contents of the extracted directory
-    extracted_files = os.listdir(extract_dir)
-
+def main(image_path):
     # Prepare data for the CSV
     csv_data = []
 
-    for file in extracted_files:
-        file_path = os.path.join(extract_dir, file)
-        file_size_mb = get_file_size_mb(file_path)
-        if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-            width, height = get_image_dimensions(file_path)
-            description = get_image_caption(file_path)
-            frames = 1
-            csv_data.append([file, 'Image', frames, height, width, file_size_mb, description])
+    file_size_mb = get_file_size_mb(image_path)
+    if image_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+        width, height = get_image_dimensions(image_path)
+        description = get_image_caption(image_path)
+        frames = 1
+        csv_data.append([os.path.basename(image_path), 'Image', frames, height, width, file_size_mb, description])
 
     # Write the CSV file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     csv_file = os.path.join(current_dir, 'output.csv')
     write_csv(csv_file, csv_data)
-    json_string = '{"name": "John", "age": 30, "city": "New York"}'
-    parsed_data = json.loads(json_string)
-    print(parsed_data)  # This will be a Python dictionary
 
 
 # Run the main function
