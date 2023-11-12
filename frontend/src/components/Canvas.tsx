@@ -96,13 +96,13 @@ export default function Canvas({
         }
       </div>
       <div className={`h-20 w-full flex bg-neutral-500 items-center justify-between px-4 rounded-md`}>
-        <div className={`bg-red-600 rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FF0000" && "border-2 border-white"}`} onClick={() => setStrokeColor("#FF0000")}>Red</div>
-        <div className={`bg-green-600 rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#00FF00" && "border-2 border-white"}`} onClick={() => setStrokeColor("#00FF00")}>Green</div>
-        <div className={`bg-yellow-300 text-black rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FFFF00" && "border-2 border-white"}`} onClick={() => setStrokeColor("#FFFF00")}>Yellow</div>
-        <div className={`bg-blue-600 rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#0000FF" && "border-2 border-white"}`} onClick={() => setStrokeColor("#0000FF")}>Blue</div>
-        <div className={`bg-black text-white rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#000000" && "border-2 border-white"}`} onClick={() => setStrokeColor("#000000")}>Black</div>
-        <div className={`bg-white text-black rounded-full py-4 px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FFFFFF" && "border-2 border-black"}`} onClick={() => {setStrokeColor("#FFFFFF")}}>Eraser</div>
-        <div className={`bg-white text-black rounded-full py-4 px-8 hover:scale-95 cursor-pointer`} onClick={onSubmit}>
+        <div className={`bg-red-600 rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FF0000" && "border-2 border-white"}`} onClick={() => setStrokeColor("#FF0000")}>Red</div>
+        <div className={`bg-green-600 rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#00FF00" && "border-2 border-white"}`} onClick={() => setStrokeColor("#00FF00")}>Green</div>
+        <div className={`bg-yellow-300 text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FFFF00" && "border-2 border-white"}`} onClick={() => setStrokeColor("#FFFF00")}>Yellow</div>
+        <div className={`bg-blue-600 rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#0000FF" && "border-2 border-white"}`} onClick={() => setStrokeColor("#0000FF")}>Blue</div>
+        <div className={`bg-black text-white rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#000000" && "border-2 border-white"}`} onClick={() => setStrokeColor("#000000")}>Black</div>
+        <div className={`bg-white text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer ${strokeColor == "#FFFFFF" && "border-2 border-black"}`} onClick={() => {setStrokeColor("#FFFFFF")}}>Eraser</div>
+        <div className={`bg-white text-black rounded-full py-2 px-4 lg:py-4 lg:px-8 hover:scale-95 cursor-pointer`} onClick={onSubmit}>
           Done!
         </div>
       </div>
