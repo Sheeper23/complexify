@@ -4,6 +4,10 @@ import { useOnDraw } from "@/hooks/useOnDraw";
 import { useEffect, useRef } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
+type CanvasProps = {
+  setMessage: (message: string) => void
+}
+
 const config: AxiosRequestConfig<any> = {
   headers: {
     "Content-Type": "application/json",
@@ -11,7 +15,9 @@ const config: AxiosRequestConfig<any> = {
   },
 };
 
-export default function Canvas() {
+export default function Canvas({
+  setMessage
+}: CanvasProps) {
   const strokeColor = useRef("#000000");
   const strokeWidth = useRef(10);
 
@@ -53,17 +59,16 @@ export default function Canvas() {
   async function onSubmit() {
     let canvas = canvasRef.current;
     const base64Canvas = canvas.toDataURL().split(";base64,")[1];
-
-    console.log(JSON.parse(`{"image_path": "${base64Canvas}"}`));
+    setMessage("Processing your image...")
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/process-image",
         base64Canvas,
         config
       );
-      console.log(response.data); // handle the response as needed
+      setMessage(response.data["message"]); // handle the response as needed
     } catch (error) {
-      console.error("Error making POST request:", error);
+      setMessage("Error making POST request: " + error);
     }
   }
 
